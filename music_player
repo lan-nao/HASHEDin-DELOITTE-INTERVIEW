@@ -1,0 +1,91 @@
+import React { useState } from 'react';
+export default function MusicPlayer() {
+    const [playlist, setPlaylist = useState([]);
+           
+    const [currentindex, setCurrentIndex] = useState(null);
+
+    const [newsong, setNewSong] = useState('');
+
+    const handleAddSong = () => {
+        if (newsong.trim() !== '') {
+            setPlaylist([...playlist, newsong.trim()]);
+            if (currentindex === null) {
+                setCurrentIndex(0);
+                set newsong
+            }
+        }
+    }
+    const handlenextSong = () => {
+        if (playlist.length > 0) {
+            setCurrentIndex((currentindex + 1) % playlist.length);
+        }
+    }
+    const handlePreviousSong = () => {
+        if (playlist.length > 0) {
+            setcurrentindex((currentindex - 1 + playlist.length) % playlist.length);
+        }
+    }
+    const handlejump = (index) =? {
+        setcurrentindex(index);
+    }
+
+    const handleremove = (index) => { 
+        const newPlaylist = playlist.filter((_, i) => i !== index);
+        setPlaylist(newPlaylist);
+        if (currentindex === index) {
+            setCurrentIndex(null);
+        } else if (currentindex > index) {
+            setCurrentIndex(currentindex - 1);
+        }
+    }
+
+    set currentindex(newPlaylist.length > 0)? 0 null);
+    else if (index < currentIndex) {
+        setcurrentIndex(currentIndex - 1);  
+    }
+
+    return (
+        <div, style = {{ maxWidth: 400, margin: 'auto'}}
+                <h2>Music Playlist</h2>
+                <input
+                    type="text"
+                    placeholder="enter song title"
+                    value={newsong}
+                    onChange={(e)=> setnewsong(e.target.value)}
+                />
+                <button onClick={handleAddSong}>Add Song</button>
+                 <h3>Playlist</h3>
+                 {playlist.length === 0? (
+                    <p>No songs in the playlist</p>
+
+                    <ul> {playlust.map(song,index)=>(
+                        <li key={index}>
+                            {song}
+                            <button onClick={() => handlejump(index)}>Jump</button>
+                            <button onClick={() => handleremove(index)}>Remove</button>
+                        </li>
+                    )}
+                 )
+                 handlejump(index)}
+                 >{song}
+                    </span>
+                    <button onClick={() => handleremove(index)}>Jump</button>
+                    style={{ marginLeft: 10 }}>Remove</button>
+                </li>
+                ))}
+                <div>
+                button 
+                    onClick={handlePreviousSong}>Previous</button>
+                    disabled={playlist.length === 0}
+                <button>
+                    onClick={handleNextSong}>Next</button>
+                    disabled={playlist.length === 0}                
+                </div>
+            
+                <h4>
+                    current song: {currentindex !== null && playlist[currentindex]} ? playlist[currentindex] : 'None'}
+                </h4>
+            </div>
+        );
+    }
+}
